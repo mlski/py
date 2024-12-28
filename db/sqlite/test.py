@@ -1,7 +1,8 @@
 import sqlite3
 import json
+import os
 
-con = sqlite3.connect("tutorial.db")
+con = sqlite3.connect(os.path.dirname(__file__) + "/tutorial.db")
 cur = con.cursor()
 
 #cur.execute("CREATE TABLE movie(title, year, score)")
