@@ -39,11 +39,12 @@ while running:
     window.blit(player.avatar, player.pos)
     pygame.draw.circle(window, WHITE, obj_pos1, 40)
     score_table = pygame.draw.rect(window, WHITE, (DISPLAY_WIDTH-100, 0, 100, 100))
-    font = pygame.font.Font('freesansbold.ttf', 20)
-    text = font.render('Collisions', True, GREEN, BLUE)
+    font_score_table = pygame.font.Font('freesansbold.ttf', 20)
+    font_score_number = pygame.font.Font('freesansbold.ttf', 40)
+    text = font_score_table.render('Collisions', True, GREEN, BLUE)
     window.blit(text, score_table)
-    score = font.render(str(player.score), True, GREEN, BLUE)
-    score_display = pygame.draw.rect(window, WHITE, (DISPLAY_WIDTH-60, 60, 40, 40))
+    score = font_score_number.render(str(player.score), True, BLACK)
+    score_display = pygame.draw.rect(window, WHITE, (DISPLAY_WIDTH-65, 45, 40, 40))
     window.blit(score, score_display)
 
     
