@@ -22,7 +22,7 @@ class Weather:
         
         resp = req.json()
         if 'data' in resp:
-            returnmsg = "Temperature for {} is {} celsius".format(resp['city_name'], resp['temp'])
+            returnmsg = "Temperature for {} is {} celsius".format(resp['data'][0]['city_name'], resp['data'][0]['temp'])
         else:
             returnmsg = "No weather for given city found"
             
