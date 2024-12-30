@@ -12,16 +12,12 @@ FPS = int(config['game.config']['FPS'])
 MOVEBY = int(config['game.config']['MOVEBY'])
 BLACK = (0, 0, 0)
 WHITE = (255, 255,255)
-GREEN = (0, 255, 0)
-BLUE = (0, 0, 128)
 
 pygame.init()
 window = pygame.display.set_mode((DISPLAY_WIDTH, DISPLAY_HEIGHT))
 pygame.display.set_caption(config['game.config']['GAME_NAME'])
-obj_pos1 = (100, 100)
-obj_boundary = pygame.Rect(100, 100, 40, 40)
 
-player = Player(obj_boundary)
+player = Player()
 clock = pygame.time.Clock()
 running = True
 
@@ -37,27 +33,16 @@ while running:
     window.fill(BLACK)
     
     window.blit(player.avatar, player.pos)
-    pygame.draw.circle(window, WHITE, obj_pos1, 40)
-    score_table = pygame.draw.rect(window, WHITE, (DISPLAY_WIDTH-100, 0, 100, 100))
-    font = pygame.font.Font('freesansbold.ttf', 20)
-    text = font.render('Collisions', True, GREEN, BLUE)
-    window.blit(text, score_table)
-    score = font.render(str(player.score), True, GREEN, BLUE)
-    score_display = pygame.draw.rect(window, WHITE, (DISPLAY_WIDTH-60, 60, 40, 40))
-    window.blit(score, score_display)
-
+    pygame.draw.circle(window, WHITE, (100, 100), 40)
     
-    if keys[pygame.K_LEFT] and player.left_boundary() and not player.colision():
+    if keys[pygame.K_LEFT] and player.left_boundary():
         player.move_left()
-    if keys[pygame.K_RIGHT] and player.right_boundary() and not player.colision():
+    if keys[pygame.K_RIGHT] and player.right_boundary():
         player.move_right()
-    if keys[pygame.K_UP] and player.up_boundary() and not player.colision():
+    if keys[pygame.K_UP] and player.up_boundary():
        player.move_up()
-    if keys[pygame.K_DOWN] and player.down_boundary() and not player.colision():
+    if keys[pygame.K_DOWN] and player.down_boundary():
         player.move_down()
-    
-    if keys[pygame.K_r]:
-        player.restart()
     
     pygame.display.update()
     clock.tick(FPS)
